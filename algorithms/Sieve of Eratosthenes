@@ -1,0 +1,34 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+int N=10000001;
+int primes[10000001];
+void srive(){
+    for(int i=0;i<N;i++)primes[i]=1;
+    primes[0]=primes[1]=0;
+    for(int j=2;j*j<=N;j++){
+        if(primes[j]==1){
+            for(int k=j*j;k<N;k+=j)
+            {
+                primes[k]=0;
+            }
+        }
+    }
+    for(int i=2;i<N;i++){
+        primes[i]=primes[i]+primes[i-1];
+    }
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    srive();
+    int Q;
+    cin>>Q;
+    while(Q--){
+        int n;
+        cin>>n;
+        cout<<primes[n]<<"\n";
+    }
+    
+
+}
